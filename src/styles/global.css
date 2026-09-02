@@ -223,7 +223,7 @@ h3 {
   position: relative;
   overflow: hidden;
   margin-top: 8px;
-  padding: 30px;
+  padding: 26px;
 }
 
 .hero-panel::before {
@@ -235,7 +235,8 @@ h3 {
 }
 
 .hero-panel h2 {
-  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  font-size: clamp(1.85rem, 2.7vw, 2.35rem);
+  line-height: 1.02;
 }
 
 .panel-label,
@@ -247,16 +248,42 @@ h3 {
   text-transform: uppercase;
 }
 
+.panel-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.panel-topline .panel-label {
+  margin: 0;
+}
+
 .hero-panel p {
   color: var(--muted);
 }
 
+.panel-company {
+  margin: 8px 0 0;
+  color: var(--coral) !important;
+  font-size: 0.98rem;
+  font-weight: 800;
+}
+
+.panel-summary {
+  max-width: 430px;
+  margin: 18px 0 0;
+}
+
 .panel-link {
   display: inline-flex;
-  margin: 6px 0 24px;
+  margin: 0;
   color: var(--green-dark);
+  font-size: 0.92rem;
   font-weight: 800;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .metric-grid,
@@ -267,7 +294,7 @@ h3 {
 }
 
 .metric-grid {
-  margin-top: 24px;
+  margin-top: 22px;
 }
 
 .metric-grid div,
@@ -285,11 +312,25 @@ h3 {
   line-height: 1;
 }
 
+.hero-panel .metric-grid div {
+  padding: 15px 16px;
+}
+
+.hero-panel .metric-grid strong {
+  font-size: 1.75rem;
+}
+
 .metric-grid span {
   display: block;
   margin-top: 8px;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.hero-panel .metric-grid span {
+  margin-top: 5px;
+  font-size: 0.84rem;
+  line-height: 1.35;
 }
 
 .section,
@@ -583,6 +624,12 @@ li + li {
   h1 {
     font-size: clamp(2.45rem, 10.5vw, 3.35rem);
     white-space: normal;
+  }
+
+  .panel-topline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
   }
 
   .case-card,
