@@ -1,0 +1,197 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { profile, publicSafetyNote } from "../../data/profile";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const pageTitle = `WhatsApp Commerce at ruparupa | ${profile.name}`;
+const pageDescription =
+  "Case study about a zero-to-one WhatsApp Commerce pilot at ruparupa involving Gupshup and Meta.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <article class="case-study">
+    <header class="case-hero">
+      <a class="back-link" href={base}>Back to portfolio</a>
+      <p class="eyebrow">ruparupa · Product Manager</p>
+      <h1>WhatsApp Commerce at ruparupa</h1>
+      <p class="lead">Exploring whether e-commerce could move from a website into a conversation.</p>
+      <div class="case-facts">
+        <span>Project type: Building a 0-to-1 product</span>
+        <span>Stakeholders: Engineering, QA, business, Gupshup, Meta</span>
+      </div>
+    </header>
+
+    <section class="content-section">
+      <h2>Context</h2>
+      <p>
+        ruparupa is an Indonesian e-commerce platform within Kawan Lama Group's home-retail ecosystem. One of
+        the group's retail brands, AZKO, is listed on the Indonesian Stock Exchange (ACES:IJ). With its long
+        track record in offline home improvement retail, Kawan Lama Group has a market position in Indonesia
+        that is comparable to Target in the US market. Similar to Target building its own D2C platform to expand
+        online, Kawan Lama Group built ruparupa as its own D2C platform, allowing customers to order products
+        for delivery or pickup at offline stores.
+      </p>
+      <p>
+        One way to expand the channel and retarget churning customers was through WhatsApp Commerce. The
+        opportunity was not only to reply to customer messages, but also to let customers choose items, add
+        items to the cart, and generate a checkout payment link directly inside WhatsApp. After our CTO signed a
+        partnership contract with Gupshup, a WhatsApp BSP partner that helped ruparupa integrate with WhatsApp,
+        I was assigned to take accountability for the product from scratch. ruparupa became the first Indonesian
+        retail e-commerce adopter of WhatsApp Commerce and Click-to-WhatsApp ads.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>The Problem</h2>
+      <p>
+        One challenge of building an independent platform is that people can feel they already have too many apps
+        on their phones and too many accounts across different websites. This can make people uninstall our app
+        or stop logging in to the website. In the end, many customers only want to keep and actively use a small
+        number of apps they rely on most often.
+      </p>
+      <p>
+        Indonesia has the third-largest WhatsApp user base worldwide, making WhatsApp one of the most important
+        and familiar apps on people's phones. This opened a meaningful opportunity for businesses to reach both
+        new users and churning users, including ruparupa prospects who might hesitate to download an app or create
+        a new account, and churning users who might have already uninstalled the ruparupa app.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>My Role</h2>
+      <p>As Product Manager, I coordinated the initiative across several stakeholder groups:</p>
+      <ul class="two-column-list">
+        <li>Engineering team: Backend, Frontend, and IT Infrastructure</li>
+        <li>Quality Assurance (QA) team</li>
+        <li>Marketing Customer Engagement team</li>
+        <li>Omnichannel team</li>
+        <li>Merchandise team</li>
+        <li>Data Analytics team</li>
+        <li>UI/UX Research team</li>
+        <li>Content Copywriting team</li>
+        <li>External BSP vendor: Gupshup</li>
+        <li>Meta team</li>
+      </ul>
+      <p>My responsibilities included:</p>
+      <ul>
+        <li>
+          Defining the user flow based on user experience considerations, overseas commerce benchmarks,
+          stakeholder expectations, and the capabilities and limitations of ruparupa and WhatsApp Commerce.
+        </li>
+        <li>Translating requirements into visual wireframes and a written PRD.</li>
+        <li>Acting as the intermediary and translator between internal local stakeholders and the international vendor.</li>
+        <li>Supporting development, SIT, UAT, delivery status communication, adoption monitoring, and iteration.</li>
+      </ul>
+    </section>
+
+    <section class="content-section process-section">
+      <h2>Working Process</h2>
+      <p>
+        The working process had two tracks that moved in parallel. One track focused on the product experience:
+        benchmarking an overseas WhatsApp Commerce reference, turning the intended journey into a Miro wireframe,
+        using that wireframe to align internal stakeholders, and iterating it until the business and technical
+        teams could buy in.
+      </p>
+      <p>
+        The other track focused on enablement: setting up the WhatsApp number, creating the Gupshup dashboard
+        account, and completing the legality paperwork needed before implementation could move forward.
+      </p>
+      <figure class="diagram-frame">
+        <img src={`${base}images/whatsapp-commerce-process.png`} alt="Working process diagram for WhatsApp Commerce at ruparupa" />
+      </figure>
+      <p>
+        Once those tracks were aligned, the revised wireframe became the shared artifact for discussions with
+        Gupshup. From there, I supported implementation across ruparupa's internal technology team and Gupshup,
+        helped move the product through SIT and UAT, supported deployment, and monitored adoption and technical
+        issues after launch so the marketing team could decide the next action plans.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>Cross-Functional Complexity</h2>
+      <p>
+        The complexity of this project came from the number of groups needed to make one customer journey work.
+        The experience depended on business teams defining the channel objective, merchandise and omnichannel
+        teams aligning the shopping use case, UI/UX and copywriting shaping the conversation flow, engineering
+        and QA making the integration reliable, data analytics monitoring adoption, and Gupshup and Meta
+        supporting the external platform layer.
+      </p>
+      <p>
+        My role was to keep those perspectives connected through a shared product flow. The wireframe and PRD
+        were not only design and requirement documents; they became alignment tools. They helped translate
+        stakeholder expectations into a customer journey, turn that journey into technical requirements, and give
+        the vendor enough context to discuss implementation without losing the business intent.
+      </p>
+      <p>
+        This made the PM work less about simply collecting requirements and more about managing boundaries: what
+        ruparupa owned, what Gupshup enabled, what Meta's WhatsApp ecosystem allowed, what the internal tech team
+        needed to build, and what the business teams needed to monitor after launch.
+      </p>
+    </section>
+
+    <section class="content-section outcome-band">
+      <h2>Outcome</h2>
+      <div class="outcome-grid">
+        <div>
+          <strong>37%</strong>
+          <p>
+            lower CAC because customers needed less effort to make a purchase: they did not need to download the
+            app or register on ruparupa's website through the normal flow.
+          </p>
+        </div>
+        <div>
+          <strong>15%</strong>
+          <p>
+            lower average cost per session after WhatsApp Commerce, when we eventually switched our BSP vendor
+            for WhatsApp notifications as well because of a better deal.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <figure class="evidence-photo">
+      <img
+        src={`${base}images/whatsapp-commerce-presentation.png`}
+        alt="Presentation slide showing the WhatsApp Commerce launch context and campaign result snapshot"
+        loading="lazy"
+      />
+      <figcaption>
+        Presentation photo from the WhatsApp Commerce work, included as a supporting visual artifact for the
+        launch context and outcome discussion.
+      </figcaption>
+    </figure>
+
+    <section class="content-section">
+      <h2>What I Learned</h2>
+      <p>
+        This project taught me that launching a new commerce channel is not just about adding another touchpoint.
+        The channel has to reduce real customer friction. In this case, the product opportunity came from meeting
+        customers inside an app they already used frequently, instead of asking every prospect or churning
+        customer to download an app, create an account, and restart the normal web or app journey.
+      </p>
+      <p>
+        I also learned how important visual alignment artifacts are in cross-company product work. The wireframe
+        helped turn a vague idea into something business stakeholders, engineering, QA, Gupshup, and Meta could
+        discuss concretely. For a complex integration, that shared understanding was as important as the written
+        requirements.
+      </p>
+      <p>
+        The biggest product lesson was that conversational commerce should not simply copy the website into
+        WhatsApp. A strong channel strategy starts by asking which parts of the journey become easier because the
+        interface is conversational, familiar, and already present on the customer's phone.
+      </p>
+    </section>
+
+    <section class="content-section note-section">
+      <p>{publicSafetyNote}</p>
+    </section>
+
+    <section class="contact-band">
+      <h2>Interested in discussing product work?</h2>
+      <div class="cta-row">
+        <a class="button primary" href={`mailto:${profile.email}`}>Email me</a>
+        <a class="button secondary" href={profile.linkedin} target="_blank" rel="noreferrer">View LinkedIn</a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile, publicSafetyNote } from "../data/profile";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const pageTitle = `${profile.name} | Product Manager Portfolio`;
+const pageDescription =
+  "Product management portfolio focused on commerce, zero-to-one product work, and cross-functional execution.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Product Management Portfolio</p>
+      <h1>{profile.name}</h1>
+      <p class="hero-positioning">{profile.headline}</p>
+      <p class="lead">{profile.summary}</p>
+      <div class="proof-strip" aria-label="Portfolio strengths">
+        <span>Conversational commerce</span>
+        <span>Integration PM</span>
+        <span>Cross-functional delivery</span>
+      </div>
+      <div class="cta-row">
+        <a class="button primary" href={`mailto:${profile.email}`}>Email me</a>
+        <a class="button secondary" href={profile.linkedin} target="_blank" rel="noreferrer">View LinkedIn</a>
+      </div>
+    </div>
+    <aside class="hero-panel" aria-label="Portfolio focus">
+      <p class="panel-label">Current case study</p>
+      <h2>WhatsApp Commerce at ruparupa</h2>
+      <p>
+        A zero-to-one conversational commerce pilot connecting WhatsApp, ruparupa commerce capabilities,
+        Gupshup, and Meta.
+      </p>
+      <a class="panel-link" href={`${base}case-studies/whatsapp-commerce/`}>Read the case study</a>
+      <div class="metric-grid">
+        <div>
+          <strong>37%</strong>
+          <span>lower CAC</span>
+        </div>
+        <div>
+          <strong>15%</strong>
+          <span>lower average cost per session</span>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Selected Work</p>
+      <h2>WhatsApp Commerce</h2>
+    </div>
+    <article class="case-card">
+      <div>
+        <p class="case-meta">ruparupa · Product Manager · Building a 0-to-1 product</p>
+        <h3>Exploring whether e-commerce could move from a website into a conversation.</h3>
+        <p>
+          The project tested whether customers could choose items, add items to cart, and generate a checkout
+          payment link directly inside WhatsApp.
+        </p>
+      </div>
+      <a class="button text" href={`${base}case-studies/whatsapp-commerce/`}>Read case study</a>
+    </article>
+  </section>
+
+  <section class="section note-section">
+    <p>{publicSafetyNote}</p>
+  </section>
+</BaseLayout>

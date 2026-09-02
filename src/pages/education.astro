@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { education, profile } from "../data/profile";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const pageTitle = `Education | ${profile.name}`;
+const pageDescription =
+  "Education background across SBM ITB, Tsinghua University, and Babson College.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <article class="education-page">
+    <header class="education-hero">
+      <a class="back-link" href={base}>Back to portfolio</a>
+      <p class="eyebrow">Education</p>
+      <h1>Education</h1>
+      <p class="hero-positioning">Business foundations across finance, entrepreneurship, and global markets.</p>
+      <p class="lead">
+        My academic background supports how I approach product work: commercial reasoning from SBM ITB,
+        global exposure through Tsinghua, and entrepreneurial operating mindset from Babson.
+      </p>
+    </header>
+
+    <section class="education-overview" aria-label="Education summary">
+      <div>
+        <span>01</span>
+        <strong>Finance and business foundation</strong>
+        <p>Structured commercial thinking, market analysis, and decision-making discipline.</p>
+      </div>
+      <div>
+        <span>02</span>
+        <strong>Global exposure</strong>
+        <p>Experience learning across different business environments and academic cultures.</p>
+      </div>
+      <div>
+        <span>03</span>
+        <strong>Entrepreneurial mindset</strong>
+        <p>Bias toward action, testing, ownership, and building from ambiguity.</p>
+      </div>
+    </section>
+
+    <section class="education-timeline" aria-label="Education background">
+      {education.map((item, index) => (
+        <article class="education-entry">
+          <div class="education-number">{String(index + 1).padStart(2, "0")}</div>
+          <div class="education-entry-body">
+            <p class="education-school">{item.school}</p>
+            <h2>{item.detail}</h2>
+            <p>{item.note}</p>
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="contact-band">
+      <h2>Interested in discussing product work?</h2>
+      <div class="cta-row">
+        <a class="button primary" href={`mailto:${profile.email}`}>Email me</a>
+        <a class="button secondary" href={profile.linkedin} target="_blank" rel="noreferrer">View LinkedIn</a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
