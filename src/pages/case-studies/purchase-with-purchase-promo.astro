@@ -1,0 +1,227 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { profile, publicSafetyNote } from "../../data/profile";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const pageTitle = `Purchase With Purchase Promo | ${profile.name}`;
+const pageDescription =
+  "Case study about launching ruparupa's Purchase With Purchase promotion before the 12.12 campaign.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <article class="case-study">
+    <header class="case-hero">
+      <a class="back-link" href={base}>Back to portfolio</a>
+      <p class="eyebrow">ruparupa · Product Manager</p>
+      <h1>Purchase With Purchase Promo</h1>
+      <p class="lead">
+        Designing a promotion system that supported multiple promotional SKUs under one Promo ID and launched in
+        time for the 12.12 double-date campaign.
+      </p>
+      <div class="case-facts">
+        <span>Project type: Product expansion</span>
+        <span>Timeline: less than 2.5 months</span>
+        <span>Outcome: IDR 81 million in revenue within the first 12 hours of 12.12</span>
+      </div>
+    </header>
+
+    <section class="content-section">
+      <h2>Context</h2>
+      <p>
+        At ruparupa, the Marketing and Merchandising teams requested a Purchase With Purchase (PWP) promotion,
+        where customers would become eligible to buy selected products at a discounted price after reaching a
+        minimum transaction amount. The project was handed over to me after the previous Product Manager resigned.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>Problem</h2>
+      <h3>Requirements Problem</h3>
+      <p>
+        At the time, ruparupa's promotion system was designed to apply one promotional SKU to each Promo ID, such
+        as for a direct discount, buy-one-get-one-free offer, or free gift. PWP introduced a new requirement: for
+        the first time, a single Promo ID needed to support multiple promotional SKUs because customers could choose
+        which discounted item to redeem after meeting the minimum transaction requirement.
+      </p>
+      <p>
+        Without changing this mechanism, the Marketing and Merchandising teams would have needed to create multiple
+        Promo IDs for a single promotional program, which would undermine the purpose of maintaining one Promo ID
+        per program. My challenge was therefore to design a promotion system that could support multiple SKUs under
+        one Promo ID.
+      </p>
+      <h3>Timeline Problem</h3>
+      <p>
+        When the previous PM resigned, the requirements were still incomplete. I needed to reconfirm the existing
+        requirements with stakeholders and define several requirements that had not yet been addressed. At the same
+        time, when I began the requirement-gathering process, the Marketing team informed us that the promotion was
+        expected to support the upcoming 12.12 double-date campaign, leaving us less than 2.5 months to deliver it.
+      </p>
+      <p>
+        My engineers and I estimated that implementing the full inherited scope together with the newly identified
+        requirements would take longer than the available timeframe. My challenge was therefore to define a feasible
+        MVP and launch PWP in time for 12.12.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>My Role</h2>
+      <p>As Product Manager, I coordinated the initiative across several stakeholder groups:</p>
+      <ul class="two-column-list">
+        <li>Engineering team: Backend, Frontend, and IT Infrastructure</li>
+        <li>Quality Assurance (QA) team</li>
+        <li>Marketing Promo team</li>
+        <li>Merchandising team</li>
+      </ul>
+      <p>My responsibilities included:</p>
+      <ul>
+        <li>Reconfirming the requirements inherited from the previous PM.</li>
+        <li>Defining the remaining requirements that had not yet been specified.</li>
+        <li>Breaking the scope into an MVP that could be launched before the 12.12 campaign.</li>
+        <li>Coordinating with UI/UX to develop the high-fidelity design used during requirement grooming.</li>
+        <li>Translating the requirements into a written PRD.</li>
+        <li>Supporting development, SIT, and UAT.</li>
+        <li>Communicating delivery status across stakeholders.</li>
+        <li>Monitoring post-deployment product adoption and iteration.</li>
+      </ul>
+    </section>
+
+    <section class="content-section process-section">
+      <h2>Product Requirements Quick Summary</h2>
+      <p>
+        One of the incomplete requirements involved the configuration view in the Marketing dashboard, specifically
+        how to configure multiple promotional SKUs under one Promo ID. Because I was also a seller on Tokopedia,
+        one of Indonesia's leading e-commerce platforms, I benchmarked its product-variant configuration pattern
+        and adapted that concept to the multi-SKU promotion setup.
+      </p>
+      <p>
+        Without a scalable configuration approach, the alternative requirement would have been to create multiple
+        Promo IDs for a single PWP program, with one Promo ID for each SKU.
+      </p>
+      <figure class="diagram-frame visual-frame">
+        <img
+          src={`${base}images/pwp-benefit-configuration.png`}
+          alt="PWP dashboard benefit tab showing multiple promotional SKUs under one Promo ID"
+          loading="lazy"
+        />
+        <figcaption>
+          Configuration concept for managing multiple promotional SKUs under one Promo ID.
+        </figcaption>
+      </figure>
+      <p>
+        Marketing and Merchandising users can bulk-edit all SKUs, apply changes only to selected SKUs, or edit an
+        individual SKU while leaving the others unchanged. The checkbox on the left determines which SKUs are
+        affected by the bulk edit. Selecting the checkbox in the top row selects all rows, while selecting
+        individual row checkboxes limits the bulk changes to those SKUs.
+      </p>
+      <ul class="requirements-list">
+        <li><strong>Maximum Qty:</strong> the maximum quantity of that SKU a customer can select on the PWP redemption page.</li>
+        <li><strong>Quota:</strong> the maximum stock allocation of that SKU available for PWP redemption.</li>
+        <li><strong>Discount / Final Price:</strong> determines whether the promotion uses a percentage discount or a fixed final price.</li>
+        <li><strong>Amount:</strong> the discount percentage when Discount % is selected, or the final selling price when Final Price is selected.</li>
+        <li><strong>Maximum Discount:</strong> enabled only for Discount %, defining the maximum discount amount in Indonesian Rupiah.</li>
+        <li><strong>Maximum Item:</strong> the maximum number of PWP items a customer can redeem in a single checkout.</li>
+      </ul>
+      <figure class="diagram-frame visual-frame">
+        <img
+          src={`${base}images/pwp-terms-conditions.png`}
+          alt="PWP dashboard T&C tab showing eligibility rules for minimum purchase, store ID, and item ID"
+          loading="lazy"
+        />
+        <figcaption>
+          Eligibility requirements for the promotion are configured in the T&C tab.
+        </figcaption>
+      </figure>
+      <p>
+        Once a customer meets the minimum transaction requirement, the eligible promotional SKUs appear on the
+        checkout page and become available for redemption.
+      </p>
+      <div class="visual-grid">
+        <figure class="diagram-frame visual-frame">
+          <img
+            src={`${base}images/pwp-checkout-entry.png`}
+            alt="Checkout page showing the Purchase With Purchase promo area"
+            loading="lazy"
+          />
+          <figcaption>Eligible promotional SKUs appear on the checkout page.</figcaption>
+        </figure>
+        <figure class="diagram-frame visual-frame">
+          <img
+            src={`${base}images/pwp-redemption-modal.png`}
+            alt="Tebus Murah redemption modal showing selectable discounted products"
+            loading="lazy"
+          />
+          <figcaption>Customers can select discounted PWP items from the redemption modal.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Project Management Challenge</h2>
+      <p>
+        When the project was handed over to me, the full scope was more complex than what was required for the
+        immediate campaign. For example, the inherited scope included a Same Store configuration, which would
+        require PWP items to be fulfilled from the same store as the main items used to meet the minimum purchase
+        requirement. It also included five different final prices for each promotional SKU, corresponding to
+        ruparupa's five geographic pricing zones, which reflected the distribution challenges of serving different
+        areas across Indonesia.
+      </p>
+      <p>
+        After reconfirming the requirements, we determined that these capabilities were not necessary for the
+        upcoming 12.12 campaign. I therefore divided the development into phases: the team focused first on the
+        requirements essential for the urgent double-date use case, while the remaining capabilities were deferred
+        to subsequent roadmap phases.
+      </p>
+    </section>
+
+    <section class="content-section outcome-band">
+      <h2>Outcome</h2>
+      <div class="outcome-grid">
+        <div>
+          <strong>1 week</strong>
+          <p>before the 12.12 double-date campaign, we successfully launched the PWP promotion.</p>
+        </div>
+        <div>
+          <strong>IDR 81M</strong>
+          <p>
+            in revenue within the first 12 hours of the 12.12 campaign, making PWP one of ruparupa's most
+            successful promotion launches on its first major day of use.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>What I Learned</h2>
+      <p>
+        Taking over an inherited project taught me not to assume that existing requirements are complete or still
+        reflect the current business need. Before continuing development, I needed to revalidate the inherited
+        scope with stakeholders, understand what was still undefined, and rebuild enough context to make confident
+        product decisions.
+      </p>
+      <p>
+        I also learned that meeting a hard commercial deadline requires deliberate scope management rather than
+        simply pushing the full backlog faster. By separating the capabilities required for the 12.12 launch from
+        more complex requirements such as Same Store and five-zone pricing, I could protect the core customer and
+        business outcome while preserving the deferred requirements in the roadmap.
+      </p>
+      <p>
+        Finally, the project reinforced the value of looking outside the immediate product for proven interaction
+        patterns. Benchmarking Tokopedia's product-variant configuration helped me frame a more scalable way for
+        business users to manage multiple promotional SKUs under one Promo ID. For me, the lesson was not to copy
+        another product, but to reuse a familiar interaction pattern when it solves a structurally similar problem.
+      </p>
+    </section>
+
+    <section class="content-section note-section">
+      <p>{publicSafetyNote}</p>
+    </section>
+
+    <section class="contact-band">
+      <h2>Interested in discussing product work?</h2>
+      <div class="cta-row">
+        <a class="button primary" href={`mailto:${profile.email}`}>Email me</a>
+        <a class="button secondary" href={profile.linkedin} target="_blank" rel="noreferrer">View LinkedIn</a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

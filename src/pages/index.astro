@@ -50,22 +50,35 @@ const pageDescription =
     </aside>
   </section>
 
-  <section class="section">
+  <section class="section" id="selected-work">
     <div class="section-heading">
       <p class="eyebrow">Selected Work</p>
-      <h2>WhatsApp Commerce</h2>
+      <h2>Case Studies</h2>
     </div>
-    <article class="case-card">
-      <div>
-        <p class="case-meta">ruparupa · Product Manager · Building a 0-to-1 product</p>
-        <h3>Exploring whether e-commerce could move from a website into a conversation.</h3>
-        <p>
-          The project tested whether customers could choose items, add items to cart, and generate a checkout
-          payment link directly inside WhatsApp.
-        </p>
-      </div>
-      <a class="button text" href={`${base}case-studies/whatsapp-commerce/`}>Read case study</a>
-    </article>
+    <div class="case-list">
+      <article class="case-card">
+        <div>
+          <p class="case-meta">ruparupa · Product Manager · Building a 0-to-1 product</p>
+          <h3>WhatsApp Commerce</h3>
+          <p>
+            Exploring whether e-commerce could move from a website into a conversation through WhatsApp,
+            ruparupa commerce capabilities, Gupshup, and Meta.
+          </p>
+        </div>
+        <a class="button text" href={`${base}case-studies/whatsapp-commerce/`}>Read case study</a>
+      </article>
+      <article class="case-card">
+        <div>
+          <p class="case-meta">ruparupa · Product Manager · Product expansion</p>
+          <h3>Purchase With Purchase Promo</h3>
+          <p>
+            Designing a PWP promotion system that supported multiple promotional SKUs under one Promo ID and
+            launched in time for the 12.12 double-date campaign.
+          </p>
+        </div>
+        <a class="button text" href={`${base}case-studies/purchase-with-purchase-promo/`}>Read case study</a>
+      </article>
+    </div>
   </section>
 
   <section class="section note-section">
