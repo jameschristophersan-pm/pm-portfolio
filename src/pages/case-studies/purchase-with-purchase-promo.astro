@@ -1,4 +1,5 @@
 ---
+import CaseExplorer from "../../components/CaseExplorer.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { profile, publicSafetyNote } from "../../data/profile";
 
@@ -12,7 +13,7 @@ const pageDescription =
   <article class="case-study">
     <header class="case-hero">
       <a class="back-link" href={base}>Back to portfolio</a>
-      <p class="eyebrow">ruparupa · Product Manager</p>
+      <p class="eyebrow">ruparupa · Product Manager · Product expansion</p>
       <h1>Purchase With Purchase Promo</h1>
       <p class="lead">
         Designing a promotion system that supported multiple promotional SKUs under one Promo ID and launched in
@@ -25,7 +26,9 @@ const pageDescription =
       </div>
     </header>
 
-    <section class="content-section">
+    <CaseExplorer initialSlug="purchase-with-purchase-promo" />
+
+    <section class="content-section" id="full-story">
       <h2>Context</h2>
       <p>
         At ruparupa, the Marketing and Merchandising teams requested a Purchase With Purchase (PWP) promotion,

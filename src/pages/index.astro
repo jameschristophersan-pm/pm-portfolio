@@ -1,4 +1,5 @@
 ---
+import CaseExplorer from "../components/CaseExplorer.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profile, publicSafetyNote } from "../data/profile";
 
@@ -27,26 +28,8 @@ const pageDescription =
         <a class="button secondary" href={profile.linkedin} target="_blank" rel="noreferrer">View LinkedIn</a>
       </div>
     </div>
-    <aside class="hero-panel" aria-label="Portfolio focus">
-      <div class="panel-topline">
-        <p class="panel-label">Current case study</p>
-        <a class="panel-link" href={`${base}case-studies/whatsapp-commerce/`}>Read case study</a>
-      </div>
-      <h2>WhatsApp Commerce</h2>
-      <p class="panel-company">ruparupa</p>
-      <p class="panel-summary">
-        Conversational commerce pilot connecting WhatsApp, ruparupa commerce capabilities, Gupshup, and Meta.
-      </p>
-      <div class="metric-grid">
-        <div>
-          <strong>37%</strong>
-          <span>lower CAC</span>
-        </div>
-        <div>
-          <strong>15%</strong>
-          <span>lower average cost per session</span>
-        </div>
-      </div>
+    <aside class="hero-panel" aria-label="Explore my product decisions">
+      <CaseExplorer />
     </aside>
   </section>
 
@@ -58,7 +41,7 @@ const pageDescription =
     <div class="case-list">
       <article class="case-card">
         <div>
-          <p class="case-meta">ruparupa · Product Manager · Building a 0-to-1 product</p>
+          <p class="case-meta">ruparupa · Product Manager · Building 0-to-1 product</p>
           <h3>WhatsApp Commerce</h3>
           <p>
             Exploring whether e-commerce could move from a website into a conversation through WhatsApp,
@@ -80,7 +63,7 @@ const pageDescription =
       </article>
       <article class="case-card">
         <div>
-          <p class="case-meta">ruparupa · Product Manager</p>
+          <p class="case-meta">ruparupa · Product Manager · Cost efficiency</p>
           <h3>Sync POS Promo</h3>
           <p>Automating offline promotion synchronization to eliminate two hours of daily manual work for the Merchandising team.</p>
         </div>
@@ -88,7 +71,7 @@ const pageDescription =
       </article>
       <article class="case-card">
         <div>
-          <p class="case-meta">Qasir · Product Manager</p>
+          <p class="case-meta">Qasir · Associate Product Manager · Product expansion</p>
           <h3>Brand Logo</h3>
           <p>Using revenue patterns and merchant interviews to prioritize receipt branding as a premium feature.</p>
         </div>
