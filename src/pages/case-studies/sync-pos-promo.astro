@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { profile, publicSafetyNote } from "../../data/profile";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const pageTitle = `Sync POS Promo | ${profile.name}`;
+const pageDescription = "Automating offline promotion synchronization to eliminate two hours of daily manual work for the Merchandising team.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <article class="case-study">
+    <header class="case-hero">
+      <a class="back-link" href={base}>Back to portfolio</a>
+      <p class="eyebrow">ruparupa · Product Manager</p>
+      <h1>Sync POS Promo</h1>
+      <p class="lead">Automating offline promotion synchronization to eliminate two hours of daily manual work for the Merchandising team.</p>
+      <div class="case-facts">
+        <span>Daily sync: 2 AM</span>
+        <span>Rollout: 30 days of monitoring</span>
+        <span>Outcome: 2 hours of daily manual work eliminated</span>
+      </div>
+    </header>
+
+    <section class="content-section">
+      <h2>Context</h2>
+      <p>ruparupa is an Indonesian e-commerce platform within Kawan Lama Group&#x27;s home-retail ecosystem. One of the group&#x27;s retail brands, AZKO, is listed on the Indonesian Stock Exchange (ACES:IJ). With its long history in offline home improvement retail, Kawan Lama Group holds a position in Indonesia comparable to Target&#x27;s in the US. Like Target&#x27;s expansion into online retail through its own D2C platform, Kawan Lama Group developed ruparupa to let customers order products for delivery or pickup at offline stores.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>Problem</h2>
+      <p>Alongside ruparupa&#x27;s online promotions, some offline stores ran their own promotional programs. Stakeholders from these stores expected the same promotions to be available online. To support this, ruparupa&#x27;s Merchandising team manually recreated the promotions in the marketing dashboard, spending approximately two hours on the task each day. The opportunity was to automate promotion creation and eliminate this recurring manual work.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>My Role</h2>
+      <p>As Product Manager, I coordinated the initiative across the following teams:</p>
+      <ul>
+        <li>Engineering: Backend, Frontend, and IT Infrastructure.</li>
+        <li>Quality Assurance (QA).</li>
+        <li>Merchandising.</li>
+      </ul>
+      <p>My responsibilities included:</p>
+      <ul>
+        <li>Coordinating with the offline store team to understand the format of its promotion data.</li>
+        <li>Mapping offline promotion parameters to their equivalents in the online promotion system.</li>
+        <li>Documenting the requirements in a PRD.</li>
+        <li>Supporting development, SIT, and UAT.</li>
+        <li>Keeping stakeholders informed of delivery progress.</li>
+        <li>Monitoring adoption and supporting iteration after deployment.</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2>Working Process</h2>
+      <p>I began by requesting a sample CSV export from the offline store POS system and clarifying the purpose of each column with the offline team. I then mapped the offline promotion parameters to their equivalents in ruparupa&#x27;s online system. This established how the source data should translate into an online promotion, including the following mappings:</p>
+      <table class="mapping-table">
+        <caption>Promotion parameter mapping</caption>
+        <thead>
+          <tr><th scope="col">Offline Store</th><th scope="col">Online Store</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>from_date</code></td><td><code>start_date</code></td></tr>
+
+          <tr><td><code>final_price</code></td><td><code>final_amount</code></td></tr>
+
+          <tr><td><code>is_promo_percent = 1</code></td><td><code>promo_type = discount</code></td></tr>
+        </tbody>
+      </table>
+      <p>Next, we made a small adjustment to promotion names so that promotions generated automatically from offline programs could be identified. We scheduled the synchronization to run daily at 2 AM, then developed and tested the system.</p>
+      <p>For the initial rollout, synced promotions were created with an inactive status. This allowed us to monitor for errors before the promotions went live, reducing the risk of activating an incorrect promotion. During this stage, the Merchandising team still needed to manually activate each promotion once it was ready.</p>
+      <p>After 30 days of monitoring with no issues, we changed the status of synced promotions to active, completing the transition to full activation.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>Outcome</h2>
+      <p>Automation eliminated two hours of daily manual work for the Merchandising team.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>What I Learned</h2>
+      <p>This project taught me that reliable automation begins with a precise understanding of the source data. Clarifying each CSV column and mapping the offline parameters to their online equivalents helped preserve the intended promotion rules across systems. As a PM, I needed to understand what each field meant before translating a repetitive business task into automated requirements.</p>
+      <p>I also learned to treat rollout design as part of the product solution. The daily 2 AM sync automated promotion creation, while the initial inactive status retained a manual activation step so we could check the results before promotions went live. That temporary work was a deliberate trade-off: after 30 issue-free days of monitoring, we had evidence to move to full activation. The experience reinforced the value of introducing automation in stages and using observed reliability to guide the removal of manual controls.</p>
+    </section>
+
+    <section class="content-section note-section">
+      <p>{publicSafetyNote}</p>
+    </section>
+    <section class="contact-band">
+      <h2>Interested in discussing product work?</h2>
+      <div class="cta-row">
+        <a class="button primary" href={`mailto:${profile.email}`}>Email me</a>
+        <a class="button secondary" href={profile.linkedin} target="_blank" rel="noreferrer">View LinkedIn</a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
