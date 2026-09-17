@@ -478,6 +478,46 @@ h3 {
   padding: 58px 0 42px;
 }
 
+.case-hero h1 {
+  max-width: 100%;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.15;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.mapping-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 24px 0;
+  color: var(--muted);
+}
+
+.mapping-table caption {
+  text-align: left;
+  margin-bottom: 12px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.mapping-table th,
+.mapping-table td {
+  padding: 12px;
+  border: 1px solid var(--line);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.mapping-table th {
+  background: var(--aqua);
+  color: var(--green-dark);
+}
+
+.receipt-frame {
+  max-width: 480px;
+}
+
 .back-link {
   display: inline-flex;
   margin-bottom: 34px;

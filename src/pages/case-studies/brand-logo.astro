@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { profile, publicSafetyNote } from "../../data/profile";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const pageTitle = `Brand Logo | ${profile.name}`;
+const pageDescription = "Using revenue patterns and merchant interviews to prioritize receipt branding as a premium feature.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <article class="case-study">
+    <header class="case-hero">
+      <a class="back-link" href={base}>Back to portfolio</a>
+      <p class="eyebrow">Qasir · Product Manager</p>
+      <h1>Brand Logo</h1>
+      <p class="lead">Using revenue patterns and merchant interviews to prioritize receipt branding as a premium feature.</p>
+      <div class="case-facts">
+        <span>Research: portfolio analysis and merchant interviews</span>
+        <span>Outcome: approximately 20% of premium-feature revenue within three months</span>
+      </div>
+    </header>
+
+    <section class="content-section">
+      <h2>Context</h2>
+      <p>Qasir was a SaaS point-of-sale (POS) company serving small and medium-sized businesses in Indonesia, referred to here as merchants. It operated a freemium model: merchants could use the core product for free, while Qasir earned revenue through Qasir Pro subscriptions and several premium features available as one-time purchases. I managed the one-time-purchase premium feature portfolio, which included around eight add-ons at the time. These features were an important source of revenue for Qasir as an early-stage startup.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>Role</h2>
+      <p>As the Product Manager responsible for one-time-purchase premium features, I aimed to identify opportunities that would deliver the most incremental value to merchants while contributing meaningfully to premium-feature revenue.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>Product Discovery</h2>
+      <p>I began with a Pareto-style analysis of the existing premium feature portfolio. By comparing higher- and lower-performing features, I looked for patterns in what merchants were already willing to pay for and used those patterns to guide prioritization.</p>
+      <p>Two of the three top-performing premium features involved receipt customization. Premium Receipt allowed merchants to remove or adjust Qasir branding on receipts, while Receipt Compacting improved their layout and spacing. The strong performance of receipt-related features suggested an opportunity, but I wanted to understand the customer reasoning behind the revenue pattern.</p>
+      <p>To test my hypothesis, I cold-called merchants who had purchased the top-performing premium features. These conversations helped explain why the features mattered to them. Two themes emerged repeatedly:</p>
+      <ul>
+        <li>Receipt-related features offered tangible improvements that merchants could show directly to their customers.</li>
+        <li>Merchants valued brand personalization and wanted customer-facing receipts to represent their own business rather than the POS provider.</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2>Solution</h2>
+      <p>The portfolio data and merchant interviews led me to prioritize Brand Logo, a new premium feature that allowed merchants to add their own business logo to customer receipts. The feature extended the portfolio around a customer need supported by both revenue patterns and direct user research.</p>
+      <figure class="diagram-frame visual-frame receipt-frame">
+        <img src={`${base}images/brand-logo-receipt.jpg`} alt="Receipt example illustrating the Brand Logo feature at Qasir" width="415" height="739" loading="lazy" />
+        <figcaption>Brand Logo allows merchants to add their own business logo to customer receipts.</figcaption>
+      </figure>
+    </section>
+
+    <section class="content-section">
+      <h2>Outcome</h2>
+      <p>Within the three months following launch, Brand Logo contributed approximately 20% of total premium-feature revenue across a portfolio of nine premium features.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>What I Learned</h2>
+      <p>This project taught me to validate desk analysis through direct conversations with users. Revenue data revealed a pattern, while merchant interviews explained the motivation behind it. Speaking with merchants helped me test my reasoning and move beyond the observation that receipt features performed well to a clearer understanding of how merchants wanted to present their businesses through branding and personalization.</p>
+      <p>I also learned to prioritize for impact when product and engineering capacity is limited. Analyzing the revenue distribution helped me identify a promising area, and validating the underlying need with merchants gave me greater confidence in prioritizing Brand Logo. This was a practical application of the Pareto principle: focus limited resources on the few opportunities with the strongest evidence of customer and business value.</p>
+    </section>
+
+    <section class="content-section note-section">
+      <p>{publicSafetyNote}</p>
+    </section>
+    <section class="contact-band">
+      <h2>Interested in discussing product work?</h2>
+      <div class="cta-row">
+        <a class="button primary" href={`mailto:${profile.email}`}>Email me</a>
+        <a class="button secondary" href={profile.linkedin} target="_blank" rel="noreferrer">View LinkedIn</a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
