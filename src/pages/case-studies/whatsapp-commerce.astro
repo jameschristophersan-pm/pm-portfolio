@@ -1,4 +1,5 @@
 ---
+import CaseExplorer from "../../components/CaseExplorer.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { profile, publicSafetyNote } from "../../data/profile";
 
@@ -12,7 +13,7 @@ const pageDescription =
   <article class="case-study">
     <header class="case-hero">
       <a class="back-link" href={base}>Back to portfolio</a>
-      <p class="eyebrow">ruparupa · Product Manager</p>
+      <p class="eyebrow">ruparupa · Product Manager · Building 0-to-1 product</p>
       <h1>WhatsApp Commerce at ruparupa</h1>
       <p class="lead">Exploring whether e-commerce could move from a website into a conversation.</p>
       <div class="case-facts">
@@ -21,7 +22,9 @@ const pageDescription =
       </div>
     </header>
 
-    <section class="content-section">
+    <CaseExplorer initialSlug="whatsapp-commerce" />
+
+    <section class="content-section" id="full-story">
       <h2>Context</h2>
       <p>
         ruparupa is an Indonesian e-commerce platform within Kawan Lama Group's home-retail ecosystem. One of

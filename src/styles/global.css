@@ -22,6 +22,15 @@ html {
   scroll-behavior: smooth;
 }
 
+#full-story {
+  scroll-margin-top: 140px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .button { transition: none; }
+}
+
 body {
   margin: 0;
   background: var(--soft);
