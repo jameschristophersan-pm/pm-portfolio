@@ -2,7 +2,7 @@ export const profile = {
   name: "James Christopher Santoso",
   headline: "Product Manager building commerce products from ambiguity to launch.",
   summary:
-    "I turn complex business and customer problems into focused product experiences. My work spans e-commerce, conversational commerce, internal platforms, SMB tools, AI, and entrepreneurship.",
+    "I turn complex business and customer problems into focused product experiences. My work spans e-commerce, conversational commerce, promo, internal platforms, POS, AI and fintech.",
   email: "jameschristophersan@gmail.com",
   linkedin: "https://linkedin.com/in/jameschristophersan",
   location: "Indonesia"
