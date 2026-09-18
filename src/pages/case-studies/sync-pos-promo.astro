@@ -1,5 +1,4 @@
 ---
-import CaseExplorer from "../../components/CaseExplorer.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { profile, publicSafetyNote } from "../../data/profile";
 
@@ -15,14 +14,7 @@ const pageDescription = "Automating offline promotion synchronization to elimina
       <p class="eyebrow">ruparupa · Product Manager · Cost efficiency</p>
       <h1>Sync POS Promo</h1>
       <p class="lead">Automating offline promotion synchronization to eliminate two hours of daily manual work for the Merchandising team.</p>
-      <div class="case-facts">
-        <span>Daily sync: 2 AM</span>
-        <span>Rollout: 30 days of monitoring</span>
-        <span>Outcome: 2 hours of daily manual work eliminated</span>
-      </div>
     </header>
-
-    <CaseExplorer initialSlug="sync-pos-promo" />
 
     <section class="content-section" id="full-story">
       <h2>Context</h2>
@@ -57,7 +49,7 @@ const pageDescription = "Automating offline promotion synchronization to elimina
       <h2>Working Process</h2>
       <p>I began by requesting a sample CSV export from the offline store POS system and clarifying the purpose of each column with the offline team. I then mapped the offline promotion parameters to their equivalents in ruparupa&#x27;s online system. This established how the source data should translate into an online promotion, including the following mappings:</p>
       <table class="mapping-table">
-        <caption>Promotion parameter mapping</caption>
+        <caption>Promotion parameter mapping example</caption>
         <thead>
           <tr><th scope="col">Offline Store</th><th scope="col">Online Store</th></tr>
         </thead>
