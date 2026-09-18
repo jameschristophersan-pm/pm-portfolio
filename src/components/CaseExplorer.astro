@@ -1,124 +1,50 @@
 ---
 import { caseStudies } from "../data/caseStudies";
-interface Props { initialSlug?: string }
-const { initialSlug } = Astro.props;
-const current = caseStudies.find(c => c.slug === initialSlug) ?? caseStudies[0];
+const current = caseStudies[0];
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/`;
 ---
-
-<section class="case-explorer" data-slug={current.slug} data-detail={Boolean(initialSlug)} data-base={base} aria-label="Explore my product decisions">
+<section class="case-explorer" aria-label="Explore my product decisions">
   <p class="eyebrow">Explore my product decisions</p>
-  <h2>{initialSlug ? "The story at a glance" : "Which challenge interests you?"}</h2>
-  {!initialSlug && <div class="explorer-choices" aria-label="Choose a product challenge">
-    {caseStudies.map(c => <a href={`${base}case-studies/${c.slug}/`} data-choice={c.slug} aria-current={c.slug === current.slug ? "true" : undefined}>
+  <div class="explorer-choices" aria-label="Choose a product challenge">
+    {caseStudies.map(c => <a href={`${base}case-studies/${c.slug}/`} data-choice data-title={c.title} aria-current={c.slug === current.slug ? "true" : undefined}>
       <strong>{c.challenge}</strong><span>{c.title}</span><small>{c.metric}</small>
     </a>)}
-  </div>}
-  <div class="explorer-detail">
-    {!initialSlug && <><p class="case-meta" data-meta>{current.meta}</p><h3 data-title>{current.title}</h3></>}
-    <div class="explorer-chapters" aria-label="Story chapters" hidden>
-      {["Challenge", "My decision", "Impact"].map((label, i) => <button type="button" data-chapter={i} aria-pressed={i === 0}>{i + 1} · {label}</button>)}
-    </div>
-    <div aria-live="polite" aria-atomic="true"><p data-story>{current.story[0]}</p></div>
-    <div class="explorer-reflection" hidden>
-      <p data-question>{current.question}</p>
-      <details><summary>See my reasoning</summary><p data-answer>{current.answer}</p></details>
-    </div>
-    <a class="explorer-full" href={initialSlug ? "#full-story" : `${base}case-studies/${current.slug}/`}>Read the full story →</a>
   </div>
-  <p class="explorer-progress" aria-live="polite" hidden></p>
+  <p class="explorer-footer" aria-live="polite">
+    <a class="explorer-full" href={`${base}case-studies/${current.slug}/`}>
+      <span data-selected-title>{current.title}</span><span> — Read the full story →</span>
+    </a>
+  </p>
 </section>
-
 <script>
-  import { caseStudies } from "../data/caseStudies";
-  const key = "pm-portfolio-explored-v1";
   for (const root of document.querySelectorAll<HTMLElement>(".case-explorer")) {
-    let selected = caseStudies.find(c => c.slug === root.dataset.slug) ?? caseStudies[0];
-    let chapter = 0;
-    let explored = new Set<string>();
-    try {
-      const stored = JSON.parse(localStorage.getItem(key) ?? "[]");
-      if (Array.isArray(stored)) explored = new Set(stored.filter(slug => caseStudies.some(c => c.slug === slug)));
-    } catch { /* Browsing works without local storage. */ }
-    const get = <T extends HTMLElement>(selector: string) => root.querySelector<T>(selector)!;
-    const progress = get<HTMLParagraphElement>(".explorer-progress");
-    function showProgress() {
-      progress.hidden = false;
-      progress.textContent = `${explored.size} of ${caseStudies.length} stories explored · Read in any order`;
-    }
-    function markExplored() {
-      explored.add(selected.slug);
-      try { localStorage.setItem(key, JSON.stringify([...explored])); } catch { /* Session-only progress remains usable. */ }
-      showProgress();
-    }
-    function render() {
-      const title = root.querySelector("[data-title]");
-      const meta = root.querySelector("[data-meta]");
-      if (title) title.textContent = selected.title;
-      if (meta) meta.textContent = selected.meta;
-      get("[data-story]").textContent = selected.story[chapter];
-      get("[data-question]").textContent = selected.question;
-      get("[data-answer]").textContent = selected.answer;
-      get(".explorer-reflection").hidden = chapter !== 1;
-      get<HTMLDetailsElement>("details").open = false;
-      root.querySelectorAll<HTMLButtonElement>("[data-chapter]").forEach(button => button.setAttribute("aria-pressed", String(Number(button.dataset.chapter) === chapter)));
-      root.querySelectorAll<HTMLAnchorElement>("[data-choice]").forEach(link => {
-        if (link.dataset.choice === selected.slug) link.setAttribute("aria-current", "true");
-        else link.removeAttribute("aria-current");
-      });
-      if (root.dataset.detail !== "true") get<HTMLAnchorElement>(".explorer-full").href = `${root.dataset.base}case-studies/${selected.slug}/`;
-    }
-    get(".explorer-chapters").hidden = false;
-    root.querySelectorAll<HTMLAnchorElement>("[data-choice]").forEach(link => link.addEventListener("click", event => {
+    const links = root.querySelectorAll<HTMLAnchorElement>("[data-choice]");
+    const storyLink = root.querySelector<HTMLAnchorElement>(".explorer-full")!;
+    const title = root.querySelector<HTMLElement>("[data-selected-title]")!;
+    links.forEach(link => link.addEventListener("click", event => {
       if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      selected = caseStudies.find(c => c.slug === link.dataset.choice)!;
-      chapter = 0;
-      render();
-      markExplored();
+      title.textContent = link.dataset.title!;
+      storyLink.href = link.href;
+      links.forEach(choice => {
+        if (choice === link) choice.setAttribute("aria-current", "true");
+        else choice.removeAttribute("aria-current");
+      });
     }));
-    root.querySelectorAll<HTMLButtonElement>("[data-chapter]").forEach(button => button.addEventListener("click", () => {
-      chapter = Number(button.dataset.chapter);
-      render();
-      markExplored();
-    }));
-    if (root.dataset.detail === "true") markExplored();
-    else showProgress();
-    window.addEventListener("storage", event => {
-      if (event.key !== key) return;
-      try {
-        const values = JSON.parse(event.newValue ?? "[]");
-        if (Array.isArray(values)) explored = new Set(values.filter(slug => caseStudies.some(c => c.slug === slug)));
-        showProgress();
-      } catch { /* Ignore malformed storage. */ }
-    });
   }
 </script>
-
 <style>
   .case-explorer { min-width: 0; }
-  .case-explorer h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.2; margin-bottom: 20px; }
-  .explorer-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .explorer-choices a { padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-decoration: none; }
+  .case-explorer .eyebrow { margin-bottom: 12px; }
+  .explorer-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .explorer-choices a { padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-decoration: none; line-height: 1.4; }
   .explorer-choices a[aria-current="true"] { background: var(--aqua); border-color: var(--green); }
   .explorer-choices a:hover { border-color: var(--green); }
   .explorer-choices strong, .explorer-choices span, .explorer-choices small { display: block; }
-  .explorer-choices strong { font-size: .94rem; color: var(--green-dark); }
-  .explorer-choices span { font-size: .86rem; margin-top: 6px; }
-  .explorer-choices small { font-size: .8rem; color: var(--muted); margin-top: 6px; }
-  .explorer-detail { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); }
-  .explorer-detail h3 { font-size: 1.35rem; line-height: 1.25; }
-  .explorer-detail .case-meta { font-size: .72rem; }
-  .explorer-chapters { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
-  .explorer-chapters button { font: inherit; font-size: .86rem; padding: 10px; min-height: 44px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); cursor: pointer; }
-  .explorer-chapters button[aria-pressed="true"] { background: var(--aqua); border-color: var(--green); }
-  .explorer-detail p { color: var(--muted); }
-  .explorer-reflection { border-top: 1px solid var(--line); padding: 8px 0 18px; }
-  summary { cursor: pointer; color: var(--green-dark); font-weight: 700; padding: 10px 0; }
-  details[open] { padding: 0 14px; background: var(--aqua); border-radius: 8px; }
-  details p { padding-bottom: 14px; }
-  .explorer-full { display: inline-block; padding: 10px 0; color: var(--green-dark); font-weight: 700; }
-  .explorer-progress { font-size: .8rem; color: var(--muted); margin: 16px 0 0; }
-  [hidden] { display: none; }
-  @media (max-width: 420px) { .explorer-choices { grid-template-columns: 1fr; } }
+  .explorer-choices strong { font-size: .86rem; color: var(--green-dark); }
+  .explorer-choices span { font-size: .82rem; margin-top: 4px; }
+  .explorer-choices small { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+  .explorer-footer { margin: 12px 0 0; padding-top: 8px; border-top: 1px solid var(--line); }
+  .explorer-full { display: block; padding: 6px 0; font-size: .86rem; font-weight: 700; color: var(--green-dark); overflow-wrap: anywhere; }
+  @media (max-width: 360px) { .explorer-choices { grid-template-columns: 1fr; } }
 </style>

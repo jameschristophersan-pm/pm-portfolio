@@ -87,7 +87,7 @@ main {
 }
 
 .hero {
-  min-height: calc(100vh - 70px);
+  min-height: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(350px, 0.86fr);
   grid-template-areas:
@@ -231,8 +231,8 @@ h3 {
   grid-area: panel;
   position: relative;
   overflow: hidden;
-  margin-top: 8px;
-  padding: 26px;
+  margin-top: 0;
+  padding: 16px;
 }
 
 .hero-panel::before {
