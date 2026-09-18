@@ -14,17 +14,20 @@ export const publicSafetyNote =
 export const education = [
   {
     school: "School of Business and Management ITB",
+    logo: "itb.png",
     detail: "Financial Management",
     note: "Built my foundation in business, finance, market analysis, and structured problem-solving."
   },
   {
     school: "Tsinghua University",
+    logo: "tsinghua.png",
     detail: "Exchange program",
     note: "Added a global business perspective through exposure to one of Asia's leading academic environments."
   },
   {
     school: "Babson College",
-    detail: "Graduate business education with an entrepreneurship focus",
+    logo: "babson.png",
+    detail: "MBA with an entrepreneurship focus",
     note: "Strengthened how I think about venture building, ownership, and turning ambiguous opportunities into action."
   }
 ];
