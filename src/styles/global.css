@@ -68,6 +68,7 @@ a {
 
 nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   color: var(--muted);
   font-size: 0.95rem;
@@ -440,7 +441,7 @@ h3 {
 
 .education-entry {
   display: grid;
-  grid-template-columns: 86px 1fr;
+  grid-template-columns: 48px 72px minmax(0, 1fr);
   gap: 26px;
   padding: 38px 0;
   border-bottom: 1px solid var(--line);
@@ -485,6 +486,73 @@ h3 {
 
 .case-hero {
   padding: 58px 0 42px;
+}
+
+.education-logo {
+  display: block;
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.experience-page {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.experience-hero {
+  padding: 58px 0 46px;
+}
+
+.experience-hero h1 {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.experience-timeline {
+  border-top: 1px solid var(--line);
+}
+
+.experience-entry {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 32px;
+  padding: 38px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.experience-period p {
+  margin: 0 0 6px;
+  color: var(--green-dark);
+  font-weight: 750;
+}
+
+.experience-period span,
+.experience-location,
+.experience-organization,
+.experience-body li {
+  color: var(--muted);
+}
+
+.experience-company {
+  margin: 0 0 10px;
+  color: var(--coral);
+  font-weight: 850;
+}
+
+.experience-body h2 {
+  font-size: clamp(1.45rem, 2.8vw, 2.2rem);
+  line-height: 1.2;
+}
+
+.experience-location,
+.experience-organization {
+  margin: 12px 0;
+}
+
+.experience-body ul {
+  margin-top: 20px;
+  margin-bottom: 0;
 }
 
 .case-hero h1 {
@@ -746,8 +814,17 @@ li + li {
   }
 
   .education-entry {
-    grid-template-columns: 1fr;
+    grid-template-columns: 48px 72px minmax(0, 1fr);
     gap: 14px;
+  }
+
+  .education-entry-body {
+    grid-column: 1 / -1;
+  }
+
+  .experience-entry {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 

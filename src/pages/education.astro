@@ -43,6 +43,7 @@ const pageDescription =
       {education.map((item, index) => (
         <article class="education-entry">
           <div class="education-number">{String(index + 1).padStart(2, "0")}</div>
+          <img class="education-logo" src={`${base}images/education/${item.logo}`} alt={`${item.school} logo`} width="72" height="72" loading="lazy" />
           <div class="education-entry-body">
             <p class="education-school">{item.school}</p>
             <h2>{item.detail}</h2>
